@@ -16,6 +16,8 @@ public class TestDataManager implements DataManager {
         Device device = new Device();
         device.setId(new Long(1));
         device.setImei("123456789012345");
+        device.setIsBlocked(1);
+        device.setIsBlocked(0);
         return device;
     }
     @Override
