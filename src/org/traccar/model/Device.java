@@ -71,5 +71,17 @@ public class Device {
     public void setUniqueId(String uniqueId) {
         this.uniqueId = uniqueId;
     }
+    
+    /**
+     * Is blocked
+     */
+    private Integer is_blocked;
 
+    public Integer getIsBlocked() {
+        return is_blocked;
+    }
+
+    public void setIsBlocked(Integer is_blocked) {
+        this.is_blocked = is_blocked;
+    }
 }
