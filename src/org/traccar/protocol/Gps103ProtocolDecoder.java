@@ -99,6 +99,22 @@ public class Gps103ProtocolDecoder extends BaseProtocolDecoder {
             Log.warning("Unknown device - " + imei);
             return null;
         }
+        
+        // Checks if device is blocked and send command to block or release
+        try {
+            Integer isBlocked = getDataManager().getDeviceByImei(imei).getIsBlocked();
+            
+            if(isBlocked == 1){
+                channel.write("**," + imei + ",J;");
+                Log.warning("Block command sent.");
+            }else if (isBlocked == 2){
+                channel.write("**," + imei + ",K;");
+                Log.warning("Resume command sent.");
+                getDataManager().getDeviceByImei(imei).setIsBlocked(0);
+            }
+        } catch (Exception error) {
+            
+        }
 
         // Alarm message
         extendedInfo.set("alarm", parser.group(index++));
